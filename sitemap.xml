@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/06/batch-means-for-variance-estimation-in-langevin-monte-carlo/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/06/brownian-motion-and-the-heat-equation/</loc>
+    <lastmod>2019-06-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/05/geometric-convergence-of-langevin-monte-carlo/</loc>
+    <lastmod>2019-05-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/05/controlling-errors-in-langevin-monte-carlo/</loc>
+    <lastmod>2019-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/k-fold-cross-validation-in-python/</loc>
+    <lastmod>2019-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/gradient-boosting-in-python/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/random-forest-in-python/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/regression-decision-trees-in-python/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/classification-decision-trees-in-python/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/markov-chain-monte-carlo-sampling-in-python/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/multinomial-logistic-regression-in-python/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/k-means-in-python/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/k-nearest-neighbors-in-python/</loc>
+    <lastmod>2019-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/2018/12/minimal-single-hidden-layer-feed-forward-neural-network-in-python/</loc>
+    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/classification/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/classification/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/clustering/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/clustering/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/feature-selection/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/feature-selection/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/gibbs-sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/gibbs-sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/langevin-monte-carlo/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/langevin-monte-carlo/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/machine-learning/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/machine-learning-algorithms/</loc>
+    <lastmod>2019-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/machine-learning-algorithms/</loc>
+    <lastmod>2019-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/markov-chain-monte-carlo/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/markov-chain-monte-carlo/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/mcmc/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/mcmc/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/monte-carlo/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/monte-carlo/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/post/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/regression/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/regression/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/rejection-sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/rejection-sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/sampling/</loc>
+    <lastmod>2019-01-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/stochastic-calculus/</loc>
+    <lastmod>2019-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/stochastic-calculus/</loc>
+    <lastmod>2019-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/supervised-learning/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/supervised-learning/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/tree-methods/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/tree-methods/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/trees/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/trees/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/tags/unsupervised-learning/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://austindavidbrown.github.io/categories/unsupervised-learning/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

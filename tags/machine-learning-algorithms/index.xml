@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning Algorithms on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/tags/machine-learning-algorithms/</link>
+    <description>Recent content in Machine Learning Algorithms on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Sun, 13 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/tags/machine-learning-algorithms/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K-fold Cross-Validation in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/k-fold-cross-validation-in-python/</link>
+      <pubDate>Sun, 13 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/k-fold-cross-validation-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ K-fold cross-validation has many different formulations and is mainly used for 2 things:  Comparing learning algorithms Hyper-parameter tuning for a single learning algorithm  The goal is to approximate the prediction error of a learning algorithm. The main idea is to construct a K-partition of the data so that a method&#39;s prediction is evaluated on a single partition but trained on all remaining partitions. Typically, $K$ is chosen to be $5$ or $10$ and there is no general theoretical best $K$ to choose.</description>
+    </item>
+    
+    <item>
+      <title>Gradient Boosting in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/gradient-boosting-in-python/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/gradient-boosting-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Previously, we constructed regression trees and found that single trees predict sub-optimally. Gradient boosting is a supervised learning algorithm. Originally, boosting was derived as an ensemble method of weak-learners and later Friedman derived gradient boosting in terms of gradient descent in a function space. Friedman&#39;s excellent paper is the interpretation we will follow. We implement a naive gradient boosting algorithm for binary classification using the implementation from XGBoost that was originally published by Friedman.</description>
+    </item>
+    
+    <item>
+      <title>Random Forest in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/random-forest-in-python/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/random-forest-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Previously, we constructed classification and regression trees. We saw that trees are suboptimal predictors on their own. A supervised learning method from someone I admire, Leo Breiman, is the Random forest. The main idea is to construct an ensemble of independent trees to improve the prediction capacity of a single tree. We do this in the following way. We sample $n$ i.i.d. observations $(X_i, Y_i)_{i = 1}^n = \mathcal{D_n}$ to build the training dataset.</description>
+    </item>
+    
+    <item>
+      <title>Classification Decision Trees in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/classification-decision-trees-in-python/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/classification-decision-trees-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Classification decision trees use the binary tree data structure to recursively split the feature space and then fit a weight at each leaf of the tree with a classification prediction. A tree can be represented by $K$ leaf nodes dividing the feature space into regions $(R_k)$ and weights $(w_k)$ so that the tree is \[ T(x) = \sum_{k = 1}^K w_k I(x \in R_k). \] Decision trees are a supervised learning method.</description>
+    </item>
+    
+    <item>
+      <title>Markov Chain Monte Carlo Sampling in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/markov-chain-monte-carlo-sampling-in-python/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/markov-chain-monte-carlo-sampling-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ It is common in machine learning that we desire to compute an integral such as \[ \int_{x \in \mathbb{R}^d} f(x) p(x) dx. \] where $f : \mathbb{R}^d \to \mathbb{R}$, $f \in L_1(pdm)$, and $p$ is a probability density. Both Lebesgue and Riemann integrals are extremely difficult to evaluate on a computer. This is because the number of grid points needed grows exponentially in the dimension. One approach is to use Monte-Carlo sampling.</description>
+    </item>
+    
+    <item>
+      <title>Multinomial Logistic Regression in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/multinomial-logistic-regression-in-python/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/multinomial-logistic-regression-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Suppose we have labels $\{ 0, \ldots, K \}$ and wish to count the occupancy of a each label into the vector $y = \{ y_i, \ldots, y_K \} \in \{0, \ldots, n\}^K$ with the constraint that $1^T y = n$. The permutations of $y$ is the multinomial coefficient \[ {n \choose y_1, \ldots, y_K}. \] This is a constrained counting problem. A random variable $Y : \Omega \to \{0, \ldots, n \} ^K$ corrsponding to this constrained counting problem follows a Multinoimal distribution denoted Multinomial(n, K, p) if $1^T Y = n$ and $p$ is a vector on the $K$ dimensional probability simplex so that $p \in [0, 1]^K$ such that $1^T p = 1$ with density \[ P(Y = y) = {n \choose y_1, \ldots, y_K} \prod_{k = 1}^K p_k^{y_k}.</description>
+    </item>
+    
+    <item>
+      <title>K-means in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/k-means-in-python/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/k-means-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ The K-means problem is an unsupervised learning problem. Let $(x_i)_{i = 1}^n$ where $x_i \in \mathbb{R}^d$ be the unlabeled data. Assume the number of clusters $k$ is known. This is a huge assumption. The most popular algorithm is by Lloyd. Algorithm: Lloyds K-means Choose initial cluster centers $\mu_1, \ldots, \mu_K$. Repeat until stopping criterion is met: For each $x_i$, compute the closest center and classify: $c_i = \text{argmin}_{k}\norm{x_i - \mu_k}$ Update each center: $\mu_j \leftarrow \frac{1}{N_k}\sum_{i : c_i = k} x_i$  This is a greedy algorithm and can be thought of as the EM algorithm on a spherical Gaussian mixture model.</description>
+    </item>
+    
+    <item>
+      <title>K-nearest Neighbors in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/k-nearest-neighbors-in-python/</link>
+      <pubDate>Thu, 03 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/k-nearest-neighbors-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ The K-nearest neighbors classifier (KNN) is a memory-based classifier. It will be clear what this means later. Let $(X_i, y_i)$ are i.i.d. with distribution $p(x, y) dm$ where $X_i \in \mathbb{R}^d$ are the features and $y \in \{c_1, \ldots, c_m \}$ are the labels. Choose $k \in \mathbb{N}$ and let $\mathcal{D}_n = (X_i, y_i)_{i = 1}^n$ be the training data. We can partition the feature space by $N_k(x, \mathcal{D}_n)$ being the k-nearest points to $x$ using a metric typically chosen as the $l^2$ norm.</description>
+    </item>
+    
+    <item>
+      <title>PCA in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</link>
+      <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</guid>
+      <description>Principal Components Analysis is an unsupervised learning or lossy compression method. Let $X = (X_i)_{i =1}^n$ such that $X_i \in \mathbb{R}^p$ be the data where $n$ is the number of observations and $p$ is the number of features. The sample covariance matrix with respect to the features is \[ \frac{1}{n} (X - \bar X)^T (X - \bar X) \] where the mean is with respect to the rows. This gives us all of the variance of covariance information of the features.</description>
+    </item>
+    
+    <item>
+      <title>Minimal Single hidden layer feed-forward Neural Network in Python</title>
+      <link>https://austindavidbrown.github.io/post/2018/12/minimal-single-hidden-layer-feed-forward-neural-network-in-python/</link>
+      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2018/12/minimal-single-hidden-layer-feed-forward-neural-network-in-python/</guid>
+      <description>The goal of neural networks in general is to approximate some function $f$. The Universal Approximation Theorem says neural networks have the capacity to accomplish this for a large class of functions. In this case, we seek to approximate the function that generates a binary classification problem. We can model this with the binary random variable $Y|X : \Omega \to \{0, 1\}$ with conditional distribution \[ p(x) = P(Y = y | X = x) = P(Y = 1 | X = x)^y (1 - P(Y = 1 | X = x))^{1 - y} \] which we seek to approximate.</description>
+    </item>
+    
+  </channel>
+</rss>

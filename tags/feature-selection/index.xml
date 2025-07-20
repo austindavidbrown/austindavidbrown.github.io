@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Selection on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/tags/feature-selection/</link>
+    <description>Recent content in Feature Selection on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Wed, 02 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/tags/feature-selection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PCA in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</link>
+      <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</guid>
+      <description>Principal Components Analysis is an unsupervised learning or lossy compression method. Let $X = (X_i)_{i =1}^n$ such that $X_i \in \mathbb{R}^p$ be the data where $n$ is the number of observations and $p$ is the number of features. The sample covariance matrix with respect to the features is \[ \frac{1}{n} (X - \bar X)^T (X - \bar X) \] where the mean is with respect to the rows. This gives us all of the variance of covariance information of the features.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monte Carlo on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/tags/monte-carlo/</link>
+    <description>Recent content in Monte Carlo on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/tags/monte-carlo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Batch Means for Variance Estimation in Langevin Monte Carlo</title>
+      <link>https://austindavidbrown.github.io/post/2019/06/batch-means-for-variance-estimation-in-langevin-monte-carlo/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/06/batch-means-for-variance-estimation-in-langevin-monte-carlo/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} \newcommand{\ip}[2]{\left\langle#1,#2\right\rangle} \newcommand{\e}{\epsilon} \newcommand{\R}{\mathbb{R}} \newcommand{\F}{\mathcal{F}} \let\phi\varphi $ The motivation here is that it is difficult to know if the Markov chain $(X_k)$ from an MCMC algorithm is any good. The batch means approach is based upon the functional CLT from Kipnis and Varadhan. Theorem (Functional Markov Chain CLT).   Let $P = p^{\otimes n}$ be an irreducible, reversible Markov chain on $\R^d$ with initial distribution $\nu$ and stationary distribution $\pi$.</description>
+    </item>
+    
+    <item>
+      <title>Brownian Motion and the Heat Equation</title>
+      <link>https://austindavidbrown.github.io/post/2019/06/brownian-motion-and-the-heat-equation/</link>
+      <pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/06/brownian-motion-and-the-heat-equation/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} \newcommand{\ip}[2]{\left\langle#1,#2\right\rangle} \newcommand{\e}{\epsilon} \newcommand{\R}{\mathbb{R}} \newcommand{\F}{\mathcal{F}} \let\phi\varphi $ The motivation is that we want to solve the PDE called the heat equation where the time change is the average change in space. The Laplacian $\Delta$ models &#34;average change&#34; in space. Thus, the heat equation is \[ \partial_t u_t(x) = \Delta u_t(x) \] with initial value $u_0(x) = u(x)$. The Laplacian $\Delta$ models &#34;average change&#34;. Consider a symmetric random walk with density $p_t(x)$ with time $t$ in discrete steps.</description>
+    </item>
+    
+    <item>
+      <title>Geometric Convergence of Langevin Monte Carlo</title>
+      <link>https://austindavidbrown.github.io/post/2019/05/geometric-convergence-of-langevin-monte-carlo/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/05/geometric-convergence-of-langevin-monte-carlo/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} \newcommand{\e}{\epsilon} \newcommand{\R}{\mathbb{R}} \let\phi\varphi $ Let $(P_t)$ be the Langevin diffusion semigroup for the invariant distribution $\Gamma$ where $d\Gamma = \gamma dm = \frac{1}{\int_{\mathbb{R^d}}\exp(-V)dm}\exp(-V)dm$ with $m$ being d-dimensional Lebesgue measure. The Markov chain for the Euler discretization is \[ X_{k + 1} = X_k - h \nabla V(X_k) + \sqrt{2h} Z \] where $Z$ is standard normal and $h$ is sufficiently small. The question is does an invariant distribution exist for $(X_k)$ and how fast is the convergence?</description>
+    </item>
+    
+    <item>
+      <title>Controlling Errors in Langevin Monte Carlo</title>
+      <link>https://austindavidbrown.github.io/post/2019/05/controlling-errors-in-langevin-monte-carlo/</link>
+      <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/05/controlling-errors-in-langevin-monte-carlo/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ The problem is that we want to compute $\Gamma f = \int f d\Gamma$ where $d\Gamma = \gamma dm = \frac{1}{\int_{\mathbb{R^d}}\exp(-V)dm}\exp(-V)dm$ with $m$ being d-dimensional Lebesgue measure and for some class of functions $f : \mathbb{R}^d \to \mathbb{R}$ with $f \in \mathcal{F}$. But we cannot do this, so we approximate $\pi f$ using samples $(X_k)_{k = 1}^n$ and use \[ \Gamma_n f = \frac{1}{n} \sum_{k = 0}^{n - 1} f(X_k).</description>
+    </item>
+    
+  </channel>
+</rss>

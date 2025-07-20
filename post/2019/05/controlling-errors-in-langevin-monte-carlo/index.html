@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <title>Controlling Errors in Langevin Monte Carlo | Austin David Brown</title>
+
+  <style>body{margin:40px auto;max-width:900px;line-height:1.6;color:#444;padding:0 10px;word-wrap:break-word;text-size-adjust:100%!important}pre{white-space:pre-wrap}algorithm{display:table;border:solid 1px;padding:1em;margin:1em;white-space:pre}a{color:#444;text-decoration:none}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+  <meta name="viewport" content="width=1024"> 
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+       displayMath: [['\\[', '\\]']],
+       inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+<div class="header">
+    <h1>
+
+      <a style="font-size:36px;" href="/"><b>Austin David Brown</b>
+      </a>
+
+      <div style="font-size:20px; margin-top: 5px; margin-bottom: 10px;">
+        <a href="https://scholar.google.com/citations?user=c0ux1WQAAAAJ" target="_blank"><b>Google scholar</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="cv.pdf"><b>Curriculum vitae</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://github.com/austindavidbrown" target="_blank"><b>Github</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://arxiv.org/search/math?query=Brown%2C+Austin&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank"><b>arXiv</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://linkedin.com/in/austindavidbrown" target="_blank"><b>Linkedin</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/post"><b>Posts</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/categories"><b>Categories</b></a>
+      </div>
+
+    </h1>
+</div>
+
+<div id="content">
+
+<header>
+    <h1>Controlling Errors in Langevin Monte Carlo</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b; <time datetime="2019-05-26">May 26, 2019</time> &#x5d;
+    Categories &#x5b;
+    <a href="https://austindavidbrown.github.io/categories/langevin-monte-carlo/">Langevin Monte Carlo</a>
+    <a href="https://austindavidbrown.github.io/categories/monte-carlo/">Monte Carlo</a>
+    <a href="https://austindavidbrown.github.io/categories/mcmc/">MCMC</a>
+    &#x5d;
+    Tags &#x5b;
+    <a href="https://austindavidbrown.github.io/tags/langevin-monte-carlo/">Langevin Monte Carlo</a>
+    <a href="https://austindavidbrown.github.io/tags/monte-carlo/">Monte Carlo</a>
+    <a href="https://austindavidbrown.github.io/tags/mcmc/">MCMC</a>
+    &#x5d;
+</div>
+<br>
+</header>
+<article>
+    $
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+$
+The problem is that we want to compute $\Gamma f = \int f d\Gamma$ where $d\Gamma = \gamma dm = \frac{1}{\int_{\mathbb{R^d}}\exp(-V)dm}\exp(-V)dm$ with $m$ being d-dimensional Lebesgue measure and for some class of functions $f : \mathbb{R}^d \to \mathbb{R}$ with $f \in \mathcal{F}$.
+But we cannot do this, so we approximate $\pi f$ using samples $(X_k)_{k = 1}^n$ and use
+
+\[
+\Gamma_n f = \frac{1}{n} \sum_{k = 0}^{n - 1} f(X_k).
+\]
+
+We are concerned with the situation where we cannot sample from $\Gamma$ and use a Markov process with $\Gamma$ as its stationary distribution to approximate $\Gamma f$.
+
+<br>
+<br>
+If we can sample from i.i.d. from $\Gamma$ and $f \in L_2(\Gamma)$, then
+
+\[
+P(|\Gamma_n f - \Gamma f | > \epsilon) 
+\le \frac{E(\Gamma_n f - \Gamma f)_2^2}{\epsilon^2}
+= \frac{Var(f(X_0))}{\epsilon^2 n}.
+\]
+
+With this bound, in order to get
+
+\[
+|\Gamma_n f - \Gamma f | \le .1
+\]
+
+with probability at least $.5$, we need at least $200 * Var(f(X_0))$ samples.
+We can do this for a normal distribution easily using Pytorch.
+
+<pre class="prettyprint lang-python">
+import torch
+torch.zeros(200).normal_(0, 1).mean()
+torch.zeros(200).normal_(0, 1).mean()
+</pre>
+
+<pre>
+tensor(0.0156)
+tensor(-0.0987)
+</pre>
+
+Thus, the Monte Carlo error is controlled by $.1$ at least half of the time.
+If we have correlated samples, the variance is 
+
+\[
+Var(\Gamma_n f) = \sum_{i = 1}^n \sum_{j = 1}^n Cov(f(X_i), f(X_j))
+\]
+and this bound may tell us nothing useful.
+Chebyshev and convexity gives us concentration for $f \in L_2(\Gamma)$ by
+
+\[
+P( |\Gamma_n f - \Gamma f| \ge \epsilon)
+\le \epsilon^{-2} E |\pi_n f - \pi f|^2
+\le \epsilon^{-2} \frac{1}{n} \sum_{k = 1}^n E |f(X_k) - \Gamma f|^2.
+\]
+but this is still difficult to deal with.
+
+<br>
+<br>
+
+If we are using Langevin MC starting at $x$ and sampling $X_k$ from $\delta_xP^k$, then $E_x f(X_k) \not= \Gamma f$.
+Instead, we try to control the bias.
+The total variation distance 
+\[
+\norm{\mu - \nu}_{TV} 
+= \sup_{B \in \mathcal{B}(\mathbb{R}^d)} |\mu(B) - \nu(B)|
+\]
+
+controls the bias for bounded and measurable functions.
+Particularly, indicator functions that approximate probabilities $P_x(X \in B) \approx \frac{1}{n} \sum_{k = 1}^n I(X_k \in B)$.
+Let $f : \mathbb{R}^d \to \mathbb{R}$ with $|f| \le R$. Then
+
+\[
+|E_x\Gamma_n f - \Gamma f |
+\le \frac{1}{n} \sum_{k = 1}^n |E_x f(X_k) - \Gamma f|
+\le \frac{2R}{n} \sum_{k = 1}^n \int_{\mathbb{R}^d} | p^k(x, y) - \gamma(y)| dy
+= \frac{2R}{n} \sum_{k = 1}^n \norm{\delta_x P^k - \pi}_{TV}.
+\] 
+
+The Wasserstein p distance $W_p(\mu, \nu)$ is
+
+\[
+\left( \inf_{C \in \mathcal{C}} \int_{\mathbb{R}^{2d}} \norm{u - v}^p dC(u, v) \right)^{\frac{1}{p}}
+\]
+where $\mathcal{C}$ is the set of joint distributions where $\mu$ and $\nu$ have the same marginal distribution.
+These distances control Lipschitz functions.
+Let $f : \mathbb{R}^d \to \mathbb{R}$ be $M-$Lipschitz.
+Let $C_k$ be an optimal coupling for $\delta_x P^k$ and $\pi$.
+Then 
+\[
+| E_x \Gamma_n f - \Gamma f |
+\le \frac{M}{n} \sum_{k = 1}^n | E_x f(X_k) - \Gamma f |
+\le \frac{M}{n} \sum_{k = 1}^n \int_{\mathbb{R}^{2d}} |u - v| dC_k(u, v)
+= \frac{M}{n} \sum_{k = 1}^n W_1(\delta_x P^k, \Gamma).
+\]
+
+There are of course many other ways.
+
+<h2>References.</h2>
+
+Boucheron, Stéphane; Thomas, Maud. Concentration inequalities for order statistics. Electron. Commun. Probab. 17 (2012), paper no. 51, 12 pp. doi:10.1214/ECP.v17-2210. https://projecteuclid.org/euclid.ecp/1465263184
+
+<!--  Twitter -->
+<br/>
+<br/>
+</article>
+
+
+    </div>
+<div class="footer">
+    
+    
+
+    
+    
+    <div class="copyright">© 2025 — Austin David Brown</div>
+    
+</div>
+</body>
+
+</html>

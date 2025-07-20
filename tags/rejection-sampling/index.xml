@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rejection Sampling on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/tags/rejection-sampling/</link>
+    <description>Recent content in Rejection Sampling on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Wed, 09 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/tags/rejection-sampling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markov Chain Monte Carlo Sampling in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/markov-chain-monte-carlo-sampling-in-python/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/markov-chain-monte-carlo-sampling-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ It is common in machine learning that we desire to compute an integral such as \[ \int_{x \in \mathbb{R}^d} f(x) p(x) dx. \] where $f : \mathbb{R}^d \to \mathbb{R}$, $f \in L_1(pdm)$, and $p$ is a probability density. Both Lebesgue and Riemann integrals are extremely difficult to evaluate on a computer. This is because the number of grid points needed grows exponentially in the dimension. One approach is to use Monte-Carlo sampling.</description>
+    </item>
+    
+  </channel>
+</rss>

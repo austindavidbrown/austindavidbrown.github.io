@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <title>K-fold Cross-Validation in Python | Austin David Brown</title>
+
+  <style>body{margin:40px auto;max-width:900px;line-height:1.6;color:#444;padding:0 10px;word-wrap:break-word;text-size-adjust:100%!important}pre{white-space:pre-wrap}algorithm{display:table;border:solid 1px;padding:1em;margin:1em;white-space:pre}a{color:#444;text-decoration:none}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+  <meta name="viewport" content="width=1024"> 
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+       displayMath: [['\\[', '\\]']],
+       inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+<div class="header">
+    <h1>
+
+      <a style="font-size:36px;" href="/"><b>Austin David Brown</b>
+      </a>
+
+      <div style="font-size:20px; margin-top: 5px; margin-bottom: 10px;">
+        <a href="https://scholar.google.com/citations?user=c0ux1WQAAAAJ" target="_blank"><b>Google scholar</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="cv.pdf"><b>Curriculum vitae</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://github.com/austindavidbrown" target="_blank"><b>Github</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://arxiv.org/search/math?query=Brown%2C+Austin&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank"><b>arXiv</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://linkedin.com/in/austindavidbrown" target="_blank"><b>Linkedin</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/post"><b>Posts</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/categories"><b>Categories</b></a>
+      </div>
+
+    </h1>
+</div>
+
+<div id="content">
+
+<header>
+    <h1>K-fold Cross-Validation in Python</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b; <time datetime="2019-01-13">Jan 13, 2019</time> &#x5d;
+    Categories &#x5b;
+    <a href="https://austindavidbrown.github.io/categories/machine-learning-algorithms/">Machine Learning Algorithms</a>
+    &#x5d;
+    Tags &#x5b;
+    <a href="https://austindavidbrown.github.io/tags/machine-learning-algorithms/">Machine Learning Algorithms</a>
+    &#x5d;
+</div>
+<br>
+</header>
+<article>
+    
+$
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+$
+K-fold cross-validation has many different formulations and is mainly used for 2 things:
+<ol>
+<li>Comparing learning algorithms</li>
+<li>Hyper-parameter tuning for a single learning algorithm</li>
+</ol>
+The goal is to approximate the prediction error of a learning algorithm.
+The main idea is to construct a  K-partition of the data so that a method's prediction is evaluated on a single partition but trained on all remaining partitions.
+Typically, $K$ is chosen to be $5$ or $10$ and there is no general theoretical best $K$ to choose.
+Let $A_1, \ldots, A_M$ be learning algorithms and $(X_i, Y_i)$ be an i.i.d. sample of the data.
+Cross-validation can be used to compare different algorithms such as $A_1$ is a neural network, $A_2$ is a gradient boosted tree.
+Alternatively, cross-validation can be used to tune hyper-parameters such as $A_{\lambda_1}, \ldots, A_{\lambda_M}$ corresponding to the $\lambda$ tuning parameter in Lasso regression. 
+The hyper-parameters can be evaluated over a grid or randomly sampled.
+If there are multiple tuning parameters, the grid grows exponentially in the dimension and random sampling is used.
+The algorithm corresponding to 1 partition of the data is
+
+
+<algorithm><b>Algorithm: K-fold Cross-validation</b>&nbsp;
+Given learning algorithms $A_1, \ldots, A_M$, and $K$ as the number of folds.
+Partition the data into $K$ of approximately equal parts $\mathcal{P}_1, \ldots, \mathcal{P}_K$.
+(In parallel or not)
+<b>for </b> $k \in 1, \ldots, K$&nbsp;
+  (In parallel or not)
+  <b>for </b> $i \in 1, \ldots, M$&nbsp;
+    $f_{A_i} \lvert_{\mathcal{P}_{-k}} \leftarrow$ Train method $A_i$ to all of the partitions except the $k$th.
+    $L(y, f_{A_i} \lvert_{\mathcal{P}_{-k}}(X)) \rvert_{\mathcal{P}_{k}} \leftarrow$ Compute the loss over the kth partition.
+<b>for </b> $i \in 1, \ldots, M$&nbsp;
+  $L_{CV}(y, f_{A_i}(X)) \leftarrow \frac{1}{K} \sum_{k = 1}^K L(y, f_{A_i} \lvert_{\mathcal{P}_{-k}}(X)) \rvert_{\mathcal{P}_{k}}$
+</algorithm>
+<br>
+<br>
+
+This algorithm is parallel by construction and the computational complexity is dependent on the training algorithms's complexity.
+K-fold cross-validation can be repeated multiple times and is called repeated K-fold cross-validation.
+Typically, the partitions $\mathcal{P}_1, \ldots, \mathcal{P}_K$ are sampled by permuting the dataset and cross-validation is run each time and the cross-validation errors are averaged.
+<br>
+<br>
+
+Let us modify a nice argument by <a href="http://www.stat.cmu.edu/~larry/">Larry Wasserman</a> who always posts excellent lecture notes.
+Let $(Y_i, X_i)_{i = 1}^{nK}$ be an i.i.d. sample.
+Let $A_1, \ldots, A_M$ be the learning algorithms,
+and let $f_{A_i} \lvert_{\mathcal{D}}$ represent a training method fit to a sample of size $n$.
+Our goal is to estimate $L(y, f_{A^*} \lvert_{\mathcal{D}}(x))$ where $A^*$ is the learning algorithm with the minimum loss or prediction error.
+Now, the cross-validation estimate is unbiased since we partition out the data to compute the prediction error over
+\[
+E \left( \frac{1}{K} \sum_{k = 1}^K \frac{1}{n} \sum_{i = 1}^n L(y_i, f_{A}(x_i) \lvert_{\mathcal{P}_n}) \right)
+= L(y, f_{A}(x) \lvert_{\mathcal{D}}).
+\]
+Suppose $\left| L(y, f_{A_i} \lvert_{\mathcal{D}_n}(x)) \right| \le R$.
+Now, maximizing the negative loss is the same as minimizing the loss.
+For me, it is easier to use Hoeffding's inequality with the maximum.
+Using a union bound along with Hoeffding's inequality, we have
+\[
+P\left( \max_{1 \le m \le M} \left| \frac{1}{K} \sum_{k = 1}^K \frac{1}{n} \sum_{i = 1}^n -L(y_i, f_{A_m}(x_i) \lvert_{\mathcal{P}_n}) - -L(y, f_{A_m}(x) \lvert_{\mathcal{D}}) \right| \ge \epsilon \right) 
+\le 2 K M \exp(\frac{-n \epsilon^2}{R^2})
+\]
+
+Choose $\epsilon = \sqrt{\frac{R^2}{n} \log\left( \frac{2KM}{\alpha} \right)}$.
+We use the fact that the difference of maximums is less than the maximum of the differences.
+Then with high probability of at least $1 - \alpha$, we have
+\[
+\min_{i \le m \le M} L_{CV}(y, f\lvert_{A_m}(X))
+- \min_{i \le m \le M} L(y, f\lvert_{A_m}(X))
+\le \sqrt{\frac{R^2}{n} \log\left( \frac{2KM}{\alpha} \right)}.
+\]
+Thus, the minimum cross-validation error of all the learning algorithms is close to the minimum prediction error of all the learning algorithms with high probability.
+Of course, this bound can be improved.
+<br>
+<br>
+
+We implement a naive parallel K-fold cross-validation algorithm in Python for tuning the "C" tuning parameter in <a href="https://en.wikipedia.org/wiki/Support-vector_machine">support vector machines</a>.
+We use Scikit-learn for the SVM algorithm and the test set from the <a href="http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits">UCI optical handwritten digits dataset</a>. We load the dataset and plot some of the digits.
+
+<pre class="prettyprint lang-python">
+import numpy as np
+import matplotlib.pyplot as plt
+from multiprocessing import Pool
+from sklearn import svm
+
+test = np.loadtxt("data/optdigits_test.txt", delimiter = ",")
+X = test[:, 0:64]
+y = test[:, 64]
+
+# Plot some of the digits
+fig = plt.figure(figsize=(8, 6))
+fig.tight_layout()
+for i in range(0, 20):
+    ax = fig.add_subplot(5, 5, i + 1)
+    ax.imshow(X[i].reshape((8,8)), cmap = "Greys", vmin = 0, vmax = 16)
+plt.show()
+</pre>
+
+<center>
+<img height="300" src="data:image/png;base64,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">
+</center>
+<br/>
+
+We implement a parallel 5-fold cross-validation in Python.
+We parallelize each $k$-fold by dividing the cross-validation function at each $k$ in the following function.
+
+<pre class="prettyprint lang-python">
+def cvK(X, y, tuning_params, partitions, k):
+  n_tuning_params = tuning_params.shape[0]
+
+  partition = partitions[k]
+  TRAIN = np.delete(np.arange(0, X.shape[0]), partition)
+  TEST = partition
+  X_train = X[TRAIN, :]
+  y_train = y[TRAIN]
+
+  X_test = X[TEST, :]
+  y_test = y[TEST]
+
+  accuracies = np.zeros(n_tuning_params)
+  for i in range(0, n_tuning_params):
+    svc = svm.SVC(C = tuning_params[i], kernel = "linear")
+    accuracies[i] = svc.fit(X_train, y_train).score(X_test, y_test)
+  return accuracies
+
+</pre>
+
+We then run each $k$ part of the cross-validation function in parallel and report the best tuning parameter from the cross-validation algorithm.
+
+<pre class="prettyprint lang-python">
+K = 5
+tuning_params = np.logspace(-6, -1, 10)
+partitions = np.array_split(np.random.permutation([i for i in range(0, X.shape[0])]), K)
+
+pool = Pool()
+args = [(X, y, tuning_params, partitions, k) for k in range(0, K)]
+Accuracies = np.array(pool.starmap(cvK, args))
+pool.close()
+
+CV_accuracy = np.mean(Accuracies, axis = 0)
+best_tuning_param = tuning_params[np.argmax(CV_accuracy)]
+print(best_tuning_param)
+</pre>
+
+<pre>
+0.0021544346900318843
+</pre>
+
+which is the best tuning parameter chosen using 5-fold cross-validation.
+
+<h2>References.</h2>
+http://www.stat.cmu.edu/~larry/=stat705/Lecture16.pdf
+<br>
+<br>
+Hoeffding, Wassily (1963). "Probability inequalities for sums of bounded random variables". Journal of the American Statistical Association. 58 (301): 13–30. doi:10.1080/01621459.1963.10500830. JSTOR 2282952. MR 0144363.
+<br>
+<br>
+Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.
+
+<!--  Twitter -->
+<br/>
+<br/>
+<hr/>
+<a class="twitter-timeline" href="https://twitter.com/austindavbrown?ref_src=twsrc%5Etfw">Tweets by austindavbrown</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</article>
+
+
+    </div>
+<div class="footer">
+    
+    
+
+    
+    
+    <div class="copyright">© 2025 — Austin David Brown</div>
+    
+</div>
+</body>
+
+</html>

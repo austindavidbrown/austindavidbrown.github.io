@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regression on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/categories/regression/</link>
+    <description>Recent content in Regression on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/categories/regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Regression Decision Trees in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/regression-decision-trees-in-python/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/regression-decision-trees-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Regression decision trees are constructed in the same manor as classification decision trees. These trees use a binary tree to recursively divide the feature space fitting a weight at each terminal node of the tree. A tree $T$ has the form \[ T(x) = \sum_{k = 1}^K w_k I(x \in R_k). \] where $K$ is the number of terminal nodes, $(R_k)$ is the partitions of the feature space, and $(w_k)$ are the weights at each terminal node.</description>
+    </item>
+    
+  </channel>
+</rss>

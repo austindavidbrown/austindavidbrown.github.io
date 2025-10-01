@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <title>Regression Decision Trees in Python | Austin David Brown</title>
+
+  <style>body{margin:40px auto;max-width:900px;line-height:1.6;color:#444;padding:0 10px;word-wrap:break-word;text-size-adjust:100%!important}pre{white-space:pre-wrap}algorithm{display:table;border:solid 1px;padding:1em;margin:1em;white-space:pre}a{color:#444;text-decoration:none}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+  <meta name="viewport" content="width=1024"> 
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+       displayMath: [['\\[', '\\]']],
+       inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+<div class="header">
+    <h1>
+
+      <a style="font-size:36px;" href="/"><b>Austin David Brown</b>
+      </a>
+
+      <div style="font-size:20px; margin-top: 5px; margin-bottom: 10px;">
+        <a href="https://scholar.google.com/citations?user=c0ux1WQAAAAJ" target="_blank"><b>Google scholar</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="cv.pdf"><b>Curriculum vitae</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://github.com/austindavidbrown" target="_blank"><b>Github</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://arxiv.org/search/math?query=Brown%2C+Austin&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank"><b>arXiv</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://linkedin.com/in/austindavidbrown" target="_blank"><b>Linkedin</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/post"><b>Posts</b></a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/categories"><b>Categories</b></a>
+      </div>
+
+    </h1>
+</div>
+
+<div id="content">
+
+<header>
+    <h1>Regression Decision Trees in Python</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b; <time datetime="2019-01-11">Jan 11, 2019</time> &#x5d;
+    Categories &#x5b;
+    <a href="https://austindavidbrown.github.io/categories/machine-learning-algorithms/">Machine Learning Algorithms</a>
+    <a href="https://austindavidbrown.github.io/categories/supervised-learning/">Supervised Learning</a>
+    <a href="https://austindavidbrown.github.io/categories/regression/">Regression</a>
+    <a href="https://austindavidbrown.github.io/categories/trees/">Trees</a>
+    &#x5d;
+    Tags &#x5b;
+    <a href="https://austindavidbrown.github.io/tags/machine-learning/">Machine Learning</a>
+    <a href="https://austindavidbrown.github.io/tags/supervised-learning/">Supervised Learning</a>
+    <a href="https://austindavidbrown.github.io/tags/regression/">Regression</a>
+    <a href="https://austindavidbrown.github.io/tags/trees/">Trees</a>
+    &#x5d;
+</div>
+<br>
+</header>
+<article>
+    
+$
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+$
+
+Regression decision trees are constructed in the same manor as classification decision trees.
+These trees use a <a href="https://en.wikipedia.org/wiki/Binary_tree">binary tree</a> to recursively divide the feature space fitting a weight at each terminal node of the tree.
+A tree $T$ has the form
+\[
+T(x) = \sum_{k = 1}^K w_k I(x \in R_k).
+\]
+where $K$ is the number of terminal nodes, $(R_k)$ is the partitions of the feature space, and $(w_k)$ are the weights at each terminal node.
+Regression trees are a supervised learning method.
+Let $\mathcal{D}_n = (X_i, y_i)_{i = 1}^n$ be the training data.
+Just as in classification trees, we need to determine how to compute the weights at the terminal nodes and the splitting measure to determine how to build the tree out.
+We compute the weight at each node with the mean
+\[
+\bar y
+\]
+computed over the terminal node.
+The splitting measure is the difference in the parent mean squared error and the mean squared error of the leaf nodes. Let $I$ be the set of elements in the node of the tree and $I_R, I_L$ be the right and left splits respectively. Then the splitting measure is the difference
+\[
+\sum_{i \in I} (y_i - \overline{y_{I}})^2 - 
+\frac{1}{N} \left( N_{L} \sum_{i \in I_{L}} (y_i - \overline{y_{I_{L}}})^2 + N_{R} \sum_{i \in I_{R}} (y_i - \overline{y_{I_{R}}})^2 \right).
+\]
+
+We use a greedy algorithm to search the feature space for the optimal split using the splitting measure.
+We combine this into the tree growing algorithm which is the same structure as for classification trees.
+
+<algorithm><b>Algorithm: Grow Tree</b>
+function $growTree(\mathcal{D}, depth)$ ;
+  node $\leftarrow$ empty node
+  node.weight $\leftarrow$ predict the weight
+  $j^*, s^*, \mathcal{D}_{Left}, \mathcal{D}_{Right} \leftarrow$ greedy split of $\mathcal{D}$&nbsp;
+  <b>if </b> we should branch the tree <b> then</b>&nbsp;
+    node.feature_index $\leftarrow j^*$&nbsp;
+    node.split_value $\leftarrow s^*$&nbsp;
+    node.left $\leftarrow growTree(\mathcal{D}_{Left}, depth + 1)$&nbsp;
+    node.right $\leftarrow growTree(\mathcal{D}_{Right}, depth + 1)$&nbsp;
+  <b>return </b> node
+</algorithm>
+<br>
+<br>
+
+We implement the regression decision tree in Python.
+
+<pre class="prettyprint lang-python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+class RegTree():
+  @staticmethod
+  def mse(v):
+    return np.mean(np.square(v - np.mean(v)))
+
+  @staticmethod
+  def split_data(X, y, feature_index, feature_value):
+    return {
+      "I_left": np.where(X[:, feature_index] <= feature_value)[0],
+      "I_right": np.where(X[:, feature_index] > feature_value)[0],
+    }
+
+  # Greedy algorithm for finding the best split
+  @staticmethod
+  def greedy_best_split(X, y):
+    best_feature_index = 0
+    best_split_value = 0
+    best_dloss = 0
+    best_split = {
+      "I_left": np.array([]),
+      "I_right": np.array([]),
+    }
+
+    n_features = X.shape[1]
+    parent_mse = RegTree.mse(y)
+    N = y.shape[0]
+    for feature_index in range(0, n_features):
+      split_values = np.unique(X[:, feature_index])
+      for split_value in split_values:
+        split = RegTree.split_data(X, y, feature_index, split_value)
+
+        # If there is a split
+        if split["I_left"].shape[0] > 0 and split["I_right"].shape[0] > 0:
+          # Compute the change in loss
+          N_left = split["I_left"].shape[0]
+          N_right = split["I_right"].shape[0]
+          dloss = parent_mse - 1/N * (N_left * RegTree.mse(y[split["I_left"]]) + N_right * RegTree.mse(y[split["I_right"]]))
+
+          # Update if the change in loss is the largest so far
+          if dloss >= best_dloss:
+            best_feature_index = feature_index
+            best_split_value = split_value
+            best_split = split
+            best_dloss = dloss
+
+    return best_dloss, best_feature_index, best_split_value, best_split
+
+  @staticmethod
+  def fit_tree(X, y, depth = 1, 
+               max_depth = 100, tolerance = 10**(-3)):
+    node = {}
+
+    # Predict with the mean
+    node["w"] = np.mean(y)
+
+    node["left"] = None
+    node["right"] = None
+
+    # If we can split, find the best split by greedy algorithm
+    if y.shape[0] >= 2:
+      dloss, feature_index, split_value, split = RegTree.greedy_best_split(X, y)
+      # If there is a greedy split and the stopping criterion is not met, branch 2 times
+      if split["I_left"].shape[0] > 0 and split["I_right"].shape[0] > 0 and dloss >= tolerance and depth < max_depth:
+        node["dloss"] = dloss
+        node["feature_index"] = feature_index
+        node["split_value"] = split_value
+
+        node["left"] = RegTree.fit_tree(X[split["I_left"]], y[split["I_left"]], depth = depth + 1, max_depth = max_depth, tolerance = tolerance)
+        node["right"] = RegTree.fit_tree(X[split["I_right"]], y[split["I_right"]], depth = depth + 1, max_depth = max_depth, tolerance = tolerance) 
+    return node
+
+  ###
+  # Predict
+  ###
+  @staticmethod
+  def predict_one(node, x):
+    if node["left"] == None:
+      return node["w"]
+    else:
+      if x[node["feature_index"]] <= node["split_value"]:
+        return RegTree.predict_one(node["left"], x)
+      else:
+        return RegTree.predict_one(node["right"], x)
+
+  @staticmethod
+  def predict(node, X):
+    n_samples = X.shape[0]
+    predictions = np.zeros(n_samples)
+    for i in range(0, n_samples):
+      predictions[i] = RegTree.predict_one(node, X[i])
+    return predictions
+
+  @staticmethod
+  def print_tree(node, depth = 0):
+    if node["left"] == None:
+      print(f'{depth * "  "}weight: {node["w"]}')
+    else:
+      print(f'{depth * "  "}X{node["feature_index"]} <= {node["split_value"]}')
+      RegTree.print_tree(node["left"], depth + 1)
+      RegTree.print_tree(node["right"], depth + 1)
+</pre>
+
+We generate some regression data and do a train/test split.
+
+<pre class="prettyprint lang-python">
+n_samples = 100
+n_features = 10
+intercept = 5 * np.ones(n_samples)
+B = 3 * np.ones(n_features)
+
+X = np.zeros((n_samples, n_features))
+for i in range(0, n_samples):
+  X[i, :] = np.random.multivariate_normal(np.zeros(n_features), 10 * np.identity(n_features))
+e = np.random.multivariate_normal(np.zeros(n_samples), np.identity(n_samples))
+y = intercept + X @ B + e
+
+# Train/test split
+n_samples = X.shape[0]
+n_TRAIN = int(.75 * n_samples)
+I = np.arange(0, n_samples)
+TRAIN = np.random.choice(I, n_TRAIN, replace = False)
+TEST = np.setdiff1d(I, TRAIN)
+X_train = X[TRAIN, :]
+y_train = y[TRAIN]
+X_test = X[TEST, :]
+y_test = y[TEST]
+</pre>
+
+We train the decision tree and report the training and test mean squared error.
+
+<pre class="prettyprint lang-python">
+tree = RegTree.fit_tree(X_train, y_train, max_depth = 100, tolerance = 10**(-3))
+
+print("Train MSE:", 1/X_train.shape[0] * np.sum(np.square(y_train - RegTree.predict(tree, X_train))))
+print("Train MSE:", 1/X_test.shape[0] * np.sum(np.square(y_test - RegTree.predict(tree, X_test))))
+</pre>
+
+<pre>
+Train MSE: 0.0
+Train MSE: 1045.3882889479746
+</pre>
+
+<h2>References.</h2>
+Kevin P. Murphy. 2012. Machine Learning: A Probabilistic Perspective. The MIT Press.
+<br>
+<br>
+https://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/
+
+<!--  Twitter -->
+<br/>
+<br/>
+<hr/>
+<a class="twitter-timeline" href="https://twitter.com/austindavbrown?ref_src=twsrc%5Etfw">Tweets by austindavbrown</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</article>
+
+
+    </div>
+<div class="footer">
+    
+    
+
+    
+    
+    <div class="copyright">© 2025 — Austin David Brown</div>
+    
+</div>
+</body>
+
+</html>

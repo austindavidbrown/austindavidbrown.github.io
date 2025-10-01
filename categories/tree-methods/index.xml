@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tree Methods on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/categories/tree-methods/</link>
+    <description>Recent content in Tree Methods on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/categories/tree-methods/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gradient Boosting in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/gradient-boosting-in-python/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/gradient-boosting-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Previously, we constructed regression trees and found that single trees predict sub-optimally. Gradient boosting is a supervised learning algorithm. Originally, boosting was derived as an ensemble method of weak-learners and later Friedman derived gradient boosting in terms of gradient descent in a function space. Friedman&#39;s excellent paper is the interpretation we will follow. We implement a naive gradient boosting algorithm for binary classification using the implementation from XGBoost that was originally published by Friedman.</description>
+    </item>
+    
+    <item>
+      <title>Random Forest in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/random-forest-in-python/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/random-forest-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ Previously, we constructed classification and regression trees. We saw that trees are suboptimal predictors on their own. A supervised learning method from someone I admire, Leo Breiman, is the Random forest. The main idea is to construct an ensemble of independent trees to improve the prediction capacity of a single tree. We do this in the following way. We sample $n$ i.i.d. observations $(X_i, Y_i)_{i = 1}^n = \mathcal{D_n}$ to build the training dataset.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unsupervised Learning on Austin David Brown</title>
+    <link>https://austindavidbrown.github.io/tags/unsupervised-learning/</link>
+    <description>Recent content in Unsupervised Learning on Austin David Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2025 — Austin David Brown</copyright>
+    <lastBuildDate>Sat, 05 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://austindavidbrown.github.io/tags/unsupervised-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K-means in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/k-means-in-python/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/k-means-in-python/</guid>
+      <description>$ \newcommand{\norm}[1]{\left\lVert#1\right\rVert} $ The K-means problem is an unsupervised learning problem. Let $(x_i)_{i = 1}^n$ where $x_i \in \mathbb{R}^d$ be the unlabeled data. Assume the number of clusters $k$ is known. This is a huge assumption. The most popular algorithm is by Lloyd. Algorithm: Lloyds K-means Choose initial cluster centers $\mu_1, \ldots, \mu_K$. Repeat until stopping criterion is met: For each $x_i$, compute the closest center and classify: $c_i = \text{argmin}_{k}\norm{x_i - \mu_k}$ Update each center: $\mu_j \leftarrow \frac{1}{N_k}\sum_{i : c_i = k} x_i$  This is a greedy algorithm and can be thought of as the EM algorithm on a spherical Gaussian mixture model.</description>
+    </item>
+    
+    <item>
+      <title>PCA in Python</title>
+      <link>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</link>
+      <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://austindavidbrown.github.io/post/2019/01/pca-in-python/</guid>
+      <description>Principal Components Analysis is an unsupervised learning or lossy compression method. Let $X = (X_i)_{i =1}^n$ such that $X_i \in \mathbb{R}^p$ be the data where $n$ is the number of observations and $p$ is the number of features. The sample covariance matrix with respect to the features is \[ \frac{1}{n} (X - \bar X)^T (X - \bar X) \] where the mean is with respect to the rows. This gives us all of the variance of covariance information of the features.</description>
+    </item>
+    
+  </channel>
+</rss>
